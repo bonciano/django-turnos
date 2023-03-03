@@ -4,10 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
 
-    <title>My page title</title>
-    <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One"
-      rel="stylesheet" />
+    <title>Turnos Online</title>
     <link rel="stylesheet" href="style.css" />
   </head>
 
@@ -24,6 +21,8 @@
       <ul>
         <li><a href="{% url 'index' %}">Inicio</a></li>
         <li><a href="{% url 'sobre' %}">Sobre</a></li>
+        <li><a href="{% url 'altaturno' %}">Alta de turno</a></li>
+        <li><a href="{% url 'altausuario' %}">Alta de usuario</a></li>
         <li><a href="{% url 'contacto' %}">Contacto</a></li>
       </ul>
 
@@ -48,7 +47,7 @@
     <!-- And here is our main footer that is used across all the pages of our website -->
 
     <footer>
-      <p>©Copyright 2050 by nobody. All rights reversed.</p>
+      <p>©Copyright 2023 by Lucas. All rights reversed.</p>
     </footer>
   </body>
 </html>

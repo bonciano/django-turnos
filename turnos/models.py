@@ -10,3 +10,11 @@ class Usuarios(models.Model):
     correo = models.CharField(max_length=300)
     telefono = models.IntegerField()
 
+
+class Turnos(models.Model):
+    usuario = models.ForeignKey(Usuarios, on_delete=models.CASCADE)
+    fecha = models.DateField()
+    hora = models.TimeField()
+    disponible = models.BooleanField(default=False)
+
+
