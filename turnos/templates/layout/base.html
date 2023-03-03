@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <title>My page title</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- Here is our main header that is used across all the pages of our website -->
+
+    <header>
+      <h1>Header</h1>
+    </header>
+
+<!-- COLOCAR AQUI LA VALIDACION DE SI EL USUARIO ESTA LOGUEADO EN LA WEB, CASO CONTRARIO, REGISTRARSE O LOGUEARSE -->
+
+    <nav>
+      <ul>
+        <li><a href="{% url 'index' %}">Inicio</a></li>
+        <li><a href="{% url 'sobre' %}">Sobre</a></li>
+        <li><a href="{% url 'contacto' %}">Contacto</a></li>
+      </ul>
+
+      <!-- A Search form is another common non-linear way to navigate through a website.
+
+      <form>
+        <input type="search" name="q" placeholder="Search query" />
+        <input type="submit" value="Go!" />
+      </form>
+    </nav>
+
+	-->
+
+    <!-- Here is our page's main content -->
+    <main>
+	  {% block content %}
+	  {% endblock %}
+      <!-- It contains an article -->
+      
+    </main>
+
+    <!-- And here is our main footer that is used across all the pages of our website -->
+
+    <footer>
+      <p>©Copyright 2050 by nobody. All rights reversed.</p>
+    </footer>
+  </body>
+</html>
+
