@@ -1,6 +1,6 @@
-from django.shortcuts import render
-from .forms import CrearUsuario, CrearTurno
-from .models import Usuarios, Turnos
+from django.shortcuts import render, redirect
+from .forms import CrearUsuario, CrearTurno, CrearMensaje
+from .models import Usuarios, Turnos, Mensajes
 
 
 # Create your views here.
@@ -14,7 +14,8 @@ def index(request):
 def altausuario(request):
     if request.method == 'GET':
         return render(request, 'usuarios/altausuario.html',{
-            'formulario' : CrearUsuario()})
+            'formulario' : CrearUsuario()
+            })
     else:
         Usuarios.objects.create(
             usuario = request.POST['usuario'],
@@ -26,31 +27,31 @@ def altausuario(request):
         )
     return render(request,'index.html')
 
-def listarturnos(request):
-    pass
+
+
+def listarturno(request,usuario_id):
+    if request.method == 'GET':
+        usuario_id = 3
+        turno = Turnos.objects.filter(usuario_id = usuario_id)
+        print(f'Aqui van los turnos del usuario 3: {turno}')
+        return render(request, 'index.html', {
+            'turno' : turno
+            })
 
 
 
 def altaturno(request):
-    #'''
-    #Para darme de alta en un turno, primero tengo que estar logueado.
-    #Y para estar logueado, primero debo estar registrado.
-    #Vinculo turno con usuario.
-    #El turno posee:
-    #    fecha de alta del turno
-    #    fecha del turno
-    #    hora del turno
-    #    usuario que solicito el turno
-    #'''
     if request.method == 'GET':
         return render(request, 'turnos/altaturno.html',{
-            'formturno' : CrearTurno()})
+            'formturno' : CrearTurno()
+            })
     else:
+        a = 'lucas'
         Turnos.objects.create(
-            usuario = 1,
+            usuario_id = 3,
             fecha = request.POST['fecha'],
             hora = request.POST['hora'],
-            disponible =True
+            disponible = True
         )
     return render(request,'index.html')
 
@@ -75,9 +76,19 @@ def sobre(request):
 
 
 def contacto(request):
-    return render(request,'contacto.html')
-
-
+    if request.method == 'GET':
+        return render(request,'contacto.html',{
+            'formulario' : CrearMensaje()
+            })
+    else:
+        Mensajes.objects.create(
+                usuario = 'lucas',
+                nombre = request.POST['nombre'],
+                correo = request.POST['correo'],
+                telefono = request.POST['telefono'],
+                mensaje = request.POST['mensaje']
+                )
+        return redirect('index')
 
 
 

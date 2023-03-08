@@ -2,42 +2,77 @@
 
 {% block content %}
 
+
 <h1>
   Bienvenido a (usuario) a la aplicacion de turnos.
 </h1>
 
-<article>
-        <h2>Article heading</h2>
+{{ turno.as_p }}
 
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Donec a diam
-          lectus. Set sit amet ipsum mauris. Maecenas congue ligula as quam
-          viverra nec consectetur ant hendrerit. Donec et mollis dolor. Praesent
-          et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt
-          congue enim, ut porta lorem lacinia consectetur.
-        </p>
-
-        <h3>Subsection</h3>
-
-        <p>
-          Donec ut librero sed accu vehicula ultricies a non tortor. Lorem ipsum
-          dolor sit amet, consectetur adipisicing elit. Aenean ut gravida lorem.
-          Ut turpis felis, pulvinar a semper sed, adipiscing id dolor.
-        </p>
-        
-      </article>
-
-      <!-- the aside content can also be nested within the main content -->
-      <aside>
-        <h2>Related</h2>
-
-        <ul>
-          <li><a href="#">Oh I do like to be beside the seaside</a></li>
-          <li><a href="#">Oh I do like to be beside the sea</a></li>
-          <li><a href="#">Although in the North of England</a></li>
-          <li><a href="#">It never stops raining</a></li>
-          <li><a href="#">Oh well…</a></li>
-        </ul>
-      </aside>
+<div id="wrapper" style="text-align: center">
+<div id="calendario">
+  <header>
+<h2>Noviembre 2017</h2>
+    
+  </header>
+<table>
+  <tr>
+    <td>L</td>
+    <td>M</td>
+    <td>Mi</td>
+    <td>J</td>
+    <td>V</td>
+    <td>S</td>
+    <td>D</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td><input type="button" value="1" onClick="computadora(this.value)"></td>
+    <td><input type="button" value="2" onClick="computadora(this.value)"></td>
+    <td><input type="button" value="3" onClick="computadora(this.value)"></td>
+    <td><input type="button" value="4" onClick="computadora(this.value)"></td>
+    <td><input type="button" value="5" onClick="computadora(this.value)"></td>
+  </tr>
+  <tr>
+    <td><input type="button" value="6" onClick="computadora(this.value)"></td>
+    <td><input type="button" value="7" onClick="computadora(this.value)"></td>
+    <td><input type="button" value="8" onClick="computadora(this.value)"></td>
+    <td><input type="button" value="9" onClick="computadora(this.value)"></td>
+    <td><input type="button" value="10" onClick="computadora(this.value)"></td>
+    <td><input type="button" value="11" onClick="computadora(this.value)"></td>
+    <td><input type="button" value="12" onClick="computadora(this.value)"></td>
+  </tr>
+  <tr>
+    <td><input type="button" value="13" onClick="computadora(this.value)"></td>
+    <td><input type="button" value="14" onClick="computadora(this.value)"></td>
+    <td><input type="button" value="15" onClick="computadora(this.value)"></td>
+    <td><input type="button" value="16" onClick="computadora(this.value)"></td>
+    <td><input type="button" value="17" onClick="computadora(this.value)"></td>
+    <td><input type="button" value="18" onClick="computadora(this.value)"></td>
+    <td><input type="button" value="19" onClick="computadora(this.value)"></td>
+  </tr>
+  <tr>
+    <td><input type="button" value="20" onClick="computadora(this.value)"></td>
+    <td><input type="button" value="21" onClick="computadora(this.value)"></td>
+    <td><input type="button" value="22" onClick="computadora(this.value)"></td>
+    <td><input type="button" value="23" onClick="computadora(this.value)"></td>
+    <td><input type="button" value="24" onClick="computadora(this.value)"></td>
+    <td><input type="button" value="25" onClick="computadora(this.value)"></td>
+    <td><input type="button" value="26" onClick="computadora(this.value)"></td>
+  </tr>
+  <tr>
+    <td><input type="button" value="27" onClick="computadora(this.value)"></td>
+    <td><input type="button" value="28" onClick="computadora(this.value)"></td>
+    <td><input type="button" value="29" onClick="computadora(this.value)"></td>
+    <td><input type="button" value="30" onClick="computadora(this.value)"></td>
+    <td><input type="button" value="31" onClick="computadora(this.value)"></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+</div>
+</div>
+</div>
 
 {% endblock %}

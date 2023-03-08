@@ -2,7 +2,14 @@
 {% block content %}
 
 <h1>Contacto</h1>
+<form method='POST'>
+  {% csrf_token %}
+  {{ formulario.as_p }}
+  <button>
+	Enviar
+  </button>
 
+</form>
 
 
 {% endblock %}

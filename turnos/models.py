@@ -17,4 +17,9 @@ class Turnos(models.Model):
     hora = models.TimeField()
     disponible = models.BooleanField(default=False)
 
-
+class Mensajes(models.Model):
+    usuario = models.CharField(max_length=30)
+    nombre = models.CharField(max_length=30)
+    correo = models.CharField(max_length=300)
+    telefono = models.IntegerField()
+    mensaje = models.CharField(max_length=300)
