@@ -1,0 +1,21 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+
+<h1>
+  Registrarse
+</h1>
+
+<form action='signup/' method='POST'>
+  {% csrf_token %}
+
+
+  {{fsignup.as_p}}
+
+  <button>
+	Registrarse
+  </button>
+
+</form>
+
+
+{% endblock %}

@@ -1,54 +1,70 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-
     <title>Turnos Online</title>
-    <link rel="stylesheet" href="style.css" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static 'styles/styles.css' %}">
   </head>
 
   <body>
-    <!-- Here is our main header that is used across all the pages of our website -->
+	<!--	<nav class="navbar bg-dark" data-bs-theme="dark"> -->
+	  <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+	    <div class="container-fluid">
+	      <a class="navbar-brand" href="{% url 'index' %}">Turnos Online</a>
+	      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="navbar-toggler-icon"></span>
+	      </button>
+	      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+	          <li class="nav-item">
+	            <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Inicio</a>
+	          </li>
+	          <li class="nav-item">
+	            <a class="nav-link" href="{% url 'sobre' %}">Sobre</a>
+	          </li>
+	          <li class="nav-item">
+	            <a class="nav-link" href="{% url 'altaturno' %}">Alta de turno</a>
+	          </li>
+	          <li class="nav-item">
+	            <a class="nav-link" href="{% url 'altausuario' %}">Alta de usuario</a>
+	          </li>
+			  <li class="nav-item">
+	            <a class="nav-link" href="{% url 'signup' %}">Registro</a>
+	          </li>
+			  <li class="nav-item">
+	            <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
+	          </li>
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+	  <!--	</nav> -->
 
-    <header>
-      <h1>Header</h1>
-    </header>
-
-<!-- COLOCAR AQUI LA VALIDACION DE SI EL USUARIO ESTA LOGUEADO EN LA WEB, CASO CONTRARIO, REGISTRARSE O LOGUEARSE -->
-
-    <nav>
-      <ul>
-        <li><a href="{% url 'index' %}">Inicio</a></li>
-        <li><a href="{% url 'sobre' %}">Sobre</a></li>
-        <li><a href="{% url 'altaturno' %}">Alta de turno</a></li>
-        <li><a href="{% url 'altausuario' %}">Alta de usuario</a></li>
-        <li><a href="{% url 'contacto' %}">Contacto</a></li>
-      </ul>
-
-      <!-- A Search form is another common non-linear way to navigate through a website.
-
-      <form>
-        <input type="search" name="q" placeholder="Search query" />
-        <input type="submit" value="Go!" />
-      </form>
-    </nav>
-
-	-->
-
-    <!-- Here is our page's main content -->
-    <main>
+    <div class='container'>
 	  {% block content %}
 	  {% endblock %}
-      <!-- It contains an article -->
-      
-    </main>
+    </div>
 
-    <!-- And here is our main footer that is used across all the pages of our website -->
+	<div class="b-example-divider"></div>
+	
+	<div class="container">
+	  <footer class="py-3 my-4">
+	    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+	      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+	      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
+	      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
+	      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+	      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+	    </ul>
+	    <p class="text-center text-muted">&copy; 2023 Luqueta, Inc</p>
+	  </footer>
+	</div>
 
-    <footer>
-      <p>©Copyright 2023 by Lucas. All rights reversed.</p>
-    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   </body>
 </html>
 

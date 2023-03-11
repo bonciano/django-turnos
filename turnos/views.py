@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
 from .forms import CrearUsuario, CrearTurno, CrearMensaje
 from .models import Usuarios, Turnos, Mensajes
-
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-
-
 def index(request):
     return render(request, 'index.html')
 
@@ -17,7 +17,7 @@ def altausuario(request):
             'formulario' : CrearUsuario()
             })
     else:
-        Usuarios.objects.create(
+        usuario = Usuarios.objects.create(
             usuario = request.POST['usuario'],
             clave = request.POST['clave'],
             nombre = request.POST['nombre'],
@@ -25,10 +25,13 @@ def altausuario(request):
             correo =  request.POST['correo'],
             telefono = request.POST['telefono']
         )
+        usuario.save()
+        login(request,usuario) # para crear cookies en el cliente (revisar de colocar lo mismo para login)
+        
     return render(request,'index.html')
 
 
-
+@login_required
 def listarturno(request,usuario_id):
     if request.method == 'GET':
         usuario_id = 3
@@ -40,6 +43,7 @@ def listarturno(request,usuario_id):
 
 
 
+@login_required
 def altaturno(request):
     if request.method == 'GET':
         return render(request, 'turnos/altaturno.html',{
@@ -56,6 +60,7 @@ def altaturno(request):
     return render(request,'index.html')
 
 
+@login_required
 def bajaturno(request):
     pass
 
@@ -63,11 +68,30 @@ def bajaturno(request):
 def iniciosesion(request):
     pass
 
+@login_required
 def cerrarsesion(request):
     pass # ?????
 
+@login_required
 def eliminarturno(request):
     pass
+
+
+
+def signup(request):
+    return render(request, 'usuarios/signup.html',{
+        'fsignup' : UserCreationForm
+        })
+
+
+
+
+
+
+
+
+
+
 
 
 def sobre(request):
