@@ -4,12 +4,13 @@
 <h1>Iniciar Sesion</h1>
 
   {{error}}
-<form action='signin' method='POST'>
+<form method='POST'>
   {% csrf_token %}
   {{fsignin.as_p}}
   <button>
 	Iniciar Sesion
   </button>
+  <p>Si aun no se ha registrado, puede hacerlo <a href='{% url 'signup' %}'>aqui</a></p>
 </form>
 
 {% endblock %}
