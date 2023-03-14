@@ -25,15 +25,21 @@
 	          <li class="nav-item">
 	            <a class="nav-link" href="{% url 'sobre' %}">Sobre</a>
 	          </li>
-	          <li class="nav-item">
+	          
+
+			  {% if user.is_authenticated %}
+			  <li class="nav-item">
 	            <a class="nav-link" href="{% url 'altaturno' %}">Alta de turno</a>
 	          </li>
-	          <li class="nav-item">
-	            <a class="nav-link" href="{% url 'altausuario' %}">Alta de usuario</a>
-	          </li>
 			  <li class="nav-item">
-	            <a class="nav-link" href="{% url 'signup' %}">Registro</a>
+	            <a class="nav-link" href="{% url 'signout' %}">Cerrar Sesion</a>
 	          </li>
+			  {% else %}
+			  <li class="nav-item">
+	            <a class="nav-link" href="{% url 'signup' %}">Iniciar Sesion</a>
+	          </li>
+			  {% endif %}
+
 			  <li class="nav-item">
 	            <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
 	          </li>

@@ -1,21 +1,29 @@
 {% extends 'layout/base.html' %}
 {% block content %}
 
-<h1>
-  Registrarse
-</h1>
 
-<form action='signup/' method='POST'>
-  {% csrf_token %}
+<h1>Iniciar Sesion</h1>
 
+<form method='POST'>
+  {{flogin}}
+</form>
 
-  {{fsignup.as_p}}
-
+<form method='POST'>
   <button>
 	Registrarse
   </button>
-
 </form>
 
+<h1>Registrarse</h1>
+
+  {{error}}
+<form  method='POST'>
+  {% csrf_token %}
+
+  {{fsignup.as_p}}
+
+  <button>Registrarse</button>
+
+</form>
 
 {% endblock %}

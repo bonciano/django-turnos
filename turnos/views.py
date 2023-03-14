@@ -1,35 +1,52 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from .forms import CrearUsuario, CrearTurno, CrearMensaje
 from .models import Usuarios, Turnos, Mensajes
-from django.contrib.auth import login
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+
+
+
+
+
+
+# Sitio base
+
 def index(request):
     return render(request, 'index.html')
 
+def sobre(request):
+    return render(request,'sobre.html')
 
-
-def altausuario(request):
+def contacto(request):
     if request.method == 'GET':
-        return render(request, 'usuarios/altausuario.html',{
-            'formulario' : CrearUsuario()
+        return render(request,'contacto.html',{
+            'formulario' : CrearMensaje()
             })
     else:
-        usuario = Usuarios.objects.create(
-            usuario = request.POST['usuario'],
-            clave = request.POST['clave'],
-            nombre = request.POST['nombre'],
-            apellido = request.POST['apellido'],
-            correo =  request.POST['correo'],
-            telefono = request.POST['telefono']
-        )
-        usuario.save()
-        login(request,usuario) # para crear cookies en el cliente (revisar de colocar lo mismo para login)
-        
-    return render(request,'index.html')
+        Mensajes.objects.create(
+                usuario = 'lucas',
+                nombre = request.POST['nombre'],
+                correo = request.POST['correo'],
+                telefono = request.POST['telefono'],
+                mensaje = request.POST['mensaje']
+                )
+        return redirect('index')
 
+
+
+
+
+
+
+
+
+
+# Menu de usuarios
 
 @login_required
 def listarturno(request,usuario_id):
@@ -65,54 +82,65 @@ def bajaturno(request):
     pass
 
 
-def iniciosesion(request):
-    pass
-
-@login_required
-def cerrarsesion(request):
-    pass # ?????
-
 @login_required
 def eliminarturno(request):
     pass
 
 
 
+
+
+# Registro de usuarios
+
 def signup(request):
-    return render(request, 'usuarios/signup.html',{
-        'fsignup' : UserCreationForm
-        })
-
-
-
-
-
-
-
-
-
-
-
-
-def sobre(request):
-    return render(request,'sobre.html')
-
-
-
-def contacto(request):
+    
     if request.method == 'GET':
-        return render(request,'contacto.html',{
-            'formulario' : CrearMensaje()
+        return render(request, 'usuarios/signup.html',{
+            'fsignup' : UserCreationForm
             })
     else:
-        Mensajes.objects.create(
-                usuario = 'lucas',
-                nombre = request.POST['nombre'],
-                correo = request.POST['correo'],
-                telefono = request.POST['telefono'],
-                mensaje = request.POST['mensaje']
-                )
-        return redirect('index')
+        u = request.POST['username']
+        p1 = request.POST['password1']
+        p2 = request.POST['password2']
+        if p1 == p2:
+            try:
+                usuario = User.objects.create_user(username=u,password=p1)
+                usuario.save()
+                login(request,usuario)
+                return redirect('altaturno')
+            except:
+                return render(request, 'usuarios/signup.html', {
+                    'fsignup' : UserCreationForm,
+                    'error' : 'El usuario ya existe, por favor, ingresar otro nombre de usuario'
+                    })
+        else:
+            return render(request, 'usuarios/signup.html', {
+                'fsignup' : UserCreationForm,
+                'error' : 'Las contrasenias no coinciden, por favor, vuelva a intentar'
+                })
+
+
+def signin(request):
+    if request.method == 'GET':
+        return render(request,'usuarios/signin.html', {'fsignin':AuthenticationForm})
+    else:
+        u = authenticate(request,username=request.POST['username'],password=request.POST['password'])
+        if u is None:
+            return render(request,'usuarios/signin.html',{'fsignin' : AuthenticationForm, 'error' : 'Usuario y/o contrasenia ivalidos'})
+        else:
+            login(request,u)
+            return redirect('index')
+
+@login_required
+def signout(request):
+    logout(request)
+    return redirect('index')
+
+
+
+
+
+
 
 
 
