@@ -6,13 +6,43 @@
   ALTA DE TURNOS
 </h1>
 
+
+<div class="container">
+  <h2>Calendario de turnos</h2>
+  <div class="row">
+    <div class="col">Lu</div>
+    <div class="col">Ma</div>
+    <div class="col">Mi</div>
+    <div class="col">Ju</div>
+    <div class="col">Vi</div>
+    <div class="col">Sa</div>
+    <div class="col">Do</div>
+  </div>
+
+
+  <div class="row">
+  {% for c1 in cal1 %}
+
+  {% if "88" in c1 %}
+  <div class="row">
+  {% elif "99" in c1 %}
+  </div>
+  {% elif c1 == "0" %}
+  <div class="col"></div>
+  {% else %}
+  <div class="col">{{c1}}</div>
+  {% endif %}
+
+  {% endfor %}
+
+
+
 <form method='POST'>
   {% csrf_token %}
   {{ formturno }}
-  <button>
-    Reservar turno
-  </button>
+  <button type="submit" class="btn btn-primary">Reservar turno</button>
 </form>
+
 
 
 {% endblock %}

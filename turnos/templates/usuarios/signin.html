@@ -7,9 +7,7 @@
 <form method='POST'>
   {% csrf_token %}
   {{fsignin.as_p}}
-  <button>
-	Iniciar Sesion
-  </button>
+  <button type="submit" class="btn btn-primary">Iniciar Sesion</button>
   <p>Si aun no se ha registrado, puede hacerlo <a href='{% url 'signup' %}'>aqui</a></p>
 </form>
 

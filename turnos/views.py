@@ -1,19 +1,17 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from .forms import CrearUsuario, CrearTurno, CrearMensaje
-from .models import Usuarios, Turnos, Mensajes
+#from django.http import HttpResponse
+from .forms import CrearTurno, CrearMensaje
+from .models import Turnos, Mensajes
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
+import calendar
+import datetime
+
+
 
 # Create your views here.
-
-
-
-
-
-
 # Sitio base
 
 def index(request):
@@ -38,14 +36,6 @@ def contacto(request):
         return redirect('index')
 
 
-
-
-
-
-
-
-
-
 # Menu de usuarios
 
 @login_required
@@ -63,9 +53,25 @@ def listarturno(request,usuario_id):
 @login_required
 def altaturno(request):
     if request.method == 'GET':
-        return render(request, 'turnos/altaturno.html',{
-            'formturno' : CrearTurno()
-            })
+        c = calendar.Calendar()
+        cal1 = []
+        cal2 = []
+        j = 0
+
+        for i in c.itermonthdays(datetime.date.today().year,datetime.date.today().month):
+            cal1.append(str(i))
+            j+=1
+            if j in (7,14,21,28):
+                cal1.append('99')
+                cal1.append('88')
+        for i in c.itermonthdays(datetime.date.today().year,datetime.date.today().month+1):
+            cal2.append(str(i))
+            j+=1
+            if j in (7,14,21,28):
+                cal2.append('99')
+                cal2.append('88')
+
+        return render(request, 'turnos/altaturno.html',{'formturno' : CrearTurno(), 'cal1' : cal1, 'cal2' : cal2 })
     else:
         a = 'lucas'
         Turnos.objects.create(
@@ -93,7 +99,7 @@ def eliminarturno(request):
 # Registro de usuarios
 
 def signup(request):
-    
+
     if request.method == 'GET':
         return render(request, 'usuarios/signup.html',{
             'fsignup' : UserCreationForm
@@ -135,15 +141,6 @@ def signin(request):
 def signout(request):
     logout(request)
     return redirect('index')
-
-
-
-
-
-
-
-
-
 
 
 
